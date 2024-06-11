@@ -1,20 +1,15 @@
 //const express = require('express');
 import express from 'express';
+
+import studentRouter from './src/routes/students.js'
+
 const app = express();
 const port = 3000;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Basic route
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.get('/hello', (req, res)=>{
-    res.set('Content-Type', 'text/html');
-    res.status(200).send("<h1>Hello World!</h1>");
-});
+app.use('/api/v1/students', studentRouter);
 
 app.listen(port, (error) =>{
     if(!error)
