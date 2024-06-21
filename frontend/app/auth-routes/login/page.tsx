@@ -15,9 +15,12 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { GoogleIcon, GithubIcon } from "@/assets/icons";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+
+
 // -------------
 const formSchema = z.object({
-  username: z.string().min(1, {
+  email: z.string().min(1, {
     message: "username is required",
   }),
   password: z.string().min(1, {
@@ -29,13 +32,18 @@ const Login = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
-  function onSubmit(data: { username: string; password: string }) {
-    console.log(data);
+  async function onSubmit(data: { email: string; password: string }) {
+    await signIn("credentials",{
+      email: data.email,
+      password: data.password,
+      redirect: true,
+      callbackUrl: "http://localhost:3000"
+    })
   }
 
   return (
@@ -46,10 +54,10 @@ const Login = () => {
         <h1 className="text-center text-2xl mb-10 font-medium">Login</h1>
         <div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem className="mb-4">
                     <FormLabel>Email</FormLabel>
