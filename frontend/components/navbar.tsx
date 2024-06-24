@@ -1,7 +1,9 @@
+'use client';
 import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { signIn } from "next-auth/react"
 
 const Navbar: React.FC = () => {
   return (
@@ -16,7 +18,7 @@ const Navbar: React.FC = () => {
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </div>
-        <Button className="mx-3">Sign Up/Sign In</Button>
+        <Button onClick={()=>signIn()} className="mx-3">Sign Up/Sign In</Button>
       </div>
     </nav>
   );
