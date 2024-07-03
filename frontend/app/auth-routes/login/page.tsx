@@ -42,7 +42,7 @@ const Login = () => {
       email: data.email,
       password: data.password,
       redirect: true,
-      callbackUrl: "http://localhost:3000"
+      callbackUrl: "/"
     })
   }
 
@@ -99,15 +99,15 @@ const Login = () => {
             </form>
           </Form>
 
-          <p className="text-center text-sm text-grey-600 mt-2">already have an account? <Link href={"/signup"} className="text-blue-500 hover:underline">sign up</Link> </p>
+          <p className="text-center text-sm text-grey-600 mt-2">already have an account? <Link href={"/auth-routes/signup"} className="text-blue-500 hover:underline">sign up</Link> </p>
 
           <p className="text-center mt-4">or</p>
           <div>
-            <Button className="hover:bg-white hover:scale-[1.02] transition-transform duration-400 w-full mt-5 bg-white border border-border text-black rounded-[4px] items-center gap-x-4">
+            <Button onClick={()=>signIn('google', {callbackUrl: "/"})} className="hover:bg-white hover:scale-[1.02] transition-transform duration-400 w-full mt-5 bg-white border border-border text-black rounded-[4px] items-center gap-x-4">
               <GoogleIcon className="h-full w-max" />
               Login with google
             </Button>
-            <Button className="hover:bg-white hover:scale-[1.02] transition-transform duration-400 w-full mt-5 bg-white border border-border text-black rounded-[4px] items-center gap-x-4">
+            <Button onClick={()=>signIn('github', {callbackUrl: "/"})} className="hover:bg-white hover:scale-[1.02] transition-transform duration-400 w-full mt-5 bg-white border border-border text-black rounded-[4px] items-center gap-x-4">
               <GithubIcon className="h-full w-max" />
               Login with github
             </Button>

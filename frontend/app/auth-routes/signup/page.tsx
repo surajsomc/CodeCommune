@@ -142,7 +142,7 @@ const Signup = () => {
             </form>
           </Form>
 
-          <p className="text-center text-sm text-grey-600 mt-2">already have an account? <Link href={"/login"} className="text-blue-500 hover:underline">login</Link> </p>
+          <p className="text-center text-sm text-grey-600 mt-2">already have an account? <Link href={"/auth-routes/login"} className="text-blue-500 hover:underline">login</Link> </p>
 
           <p className="text-center mt-4">or</p>
           <div>
