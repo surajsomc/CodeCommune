@@ -1,3 +1,6 @@
+## Published domain for the website
+https://main--inquisitive-gumption-152fac.netlify.app/
+
 ## Cloning the repo
 
 Clone the repository to your local machine:
