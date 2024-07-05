@@ -3,9 +3,12 @@ import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { signIn } from "next-auth/react"
+import { signIn, signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
 
 const Navbar: React.FC = () => {
+  const { data: session } = useSession();
+
   return (
     <nav className="bg py-3 border-b-2">
       <div className="flex justify-between items-center">
@@ -18,7 +21,7 @@ const Navbar: React.FC = () => {
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </div>
-        <Button onClick={()=>signIn()} className="mx-3">Sign Up/Sign In</Button>
+        <Button onClick={!session?()=>signIn():()=>signOut()} className="mx-3">{!session?"Sign Up/Sign In":"Logout"}</Button>
       </div>
     </nav>
   );

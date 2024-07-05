@@ -33,7 +33,6 @@ const contributors = [
 export default function About() {
   return (
     <div>
-      <Navbar />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="about text-center max-w-5xl">
           <h1 className="text-6xl tracking-tighter">Our Mission</h1>
