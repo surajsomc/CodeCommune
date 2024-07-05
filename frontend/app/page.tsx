@@ -1,13 +1,12 @@
-
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
+"use client"
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import Navbar from "@/components/navbar"
 import { useSession } from "next-auth/react"
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session } = useSession()
   return (
     <div>
       <Navbar />
@@ -15,5 +14,5 @@ export default function Home() {
         {session && "signed in"}
       </main>
     </div>
-  );
+  )
 }
