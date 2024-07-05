@@ -29,7 +29,8 @@ providers: [
       if(!credentials?.email || !credentials?.password){
         return null;
       }
-      const res = await fetch(`http://localhost:3001/api/v1/students`);
+      const endpoint = process.env.BACKEND_API_ENDPOINT as string
+      const res = await fetch(`${endpoint}/api/v1/students`);
       const users = await res.json();
       const user = users.data.find((x:any) => (x.email === credentials?.email && x.password === credentials?.password))
       if (user){
