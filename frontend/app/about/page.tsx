@@ -38,7 +38,7 @@ export default function About() {
         <div className="about text-center max-w-5xl">
           <h1 className="text-6xl tracking-tighter">Our Mission</h1>
           <p className="text-xl py-4">
-            A community for coders to gain that "entry level" experience. We
+            A community for coders to gain that &quot;entry level&quot; experience. We
             provide a platform for coders to collaborate on projects, learn new
             technologies, and build a portfolio. Our goal is to help you find
             new people and opportunities to grow your skills.
@@ -55,7 +55,6 @@ export default function About() {
               href="https://discord.gg/FchtwAcN"
               target="_blank"
               rel="noopener noreferrer"
-              
             >
               <DiscordIcon className="h-full w-max" />
               Join Our Discord to Contribute
@@ -83,4 +82,3 @@ export default function About() {
     </div>
   )
 }
-
