@@ -29,10 +29,16 @@ providers: [
       if(!credentials?.email || !credentials?.password){
         return null;
       }
-      const endpoint = process.env.BACKEND_API_ENDPOINT as string
-      const res = await fetch(`${endpoint}/api/v1/students`);
-      const users = await res.json();
-      const user = users.data.find((x:any) => (x.email === credentials?.email && x.password === credentials?.password))
+      const endpoint = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT as string
+      const res = await fetch(`${endpoint}/login`, 
+        { method: "POST", 
+          body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+          headers: {
+        "Content-Type": "application/json"
+         },    
+      });
+      const user = await res.json();
+
       if (user){
         return user;
       }
