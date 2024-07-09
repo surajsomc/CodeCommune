@@ -43,8 +43,22 @@ const Signup = () => {
     },
   });
 
-  function onSubmit(data: { username: string; email: string; password: string; confirmPassword: string }) {
+  async function onSubmit(data: { username: string; email: string; password: string; confirmPassword: string }) {
     console.log(data);
+    const {username, email, password} = data;
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/register`, 
+        { method: "POST",
+          mode: 'cors',
+          body: JSON.stringify({ username: username, email: email , password: password }),
+          headers: {
+        "Content-Type": "application/json"
+         },    
+      });
+      const user = await res.json();
+    } catch (error) {
+      
+    }
   }
 
   return (
