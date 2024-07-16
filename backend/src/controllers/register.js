@@ -18,7 +18,6 @@ const registerController = async (req, res, next) => {
       const newUser=await User.create({
         email,username,password:hashPassword
       })
-      console.log(newUser);
       const payload={email,username};
       const token=jwt.sign(payload,process.env.JWT_SECREAT);
       res.send({message:"User regetered succesfully",username,email,token});
