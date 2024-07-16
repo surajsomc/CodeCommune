@@ -45,7 +45,6 @@ const Signup = () => {
   });
 
   async function onSubmit(data: { username: string; email: string; password: string; confirmPassword: string }) {
-    console.log(data);
     const {username, email, password} = data;
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/register`, 

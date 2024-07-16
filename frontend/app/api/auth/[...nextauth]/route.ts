@@ -39,7 +39,7 @@ providers: [
       });
       const user = await res.json();
 
-      if (user){
+      if (user.email){
         return user;
       }
       return null;
