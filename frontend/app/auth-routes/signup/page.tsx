@@ -15,6 +15,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { GoogleIcon, GithubIcon } from "@/assets/icons";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 // -------------
 const formSchema = z.object({
@@ -44,7 +45,6 @@ const Signup = () => {
   });
 
   async function onSubmit(data: { username: string; email: string; password: string; confirmPassword: string }) {
-    console.log(data);
     const {username, email, password} = data;
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/register`, 
@@ -56,6 +56,14 @@ const Signup = () => {
          },    
       });
       const user = await res.json();
+      if (res.ok) {
+        await signIn("credentials", {
+          email: email,
+          password: password,
+          redirect: true,
+          callbackUrl: "/",
+        })
+      } 
     } catch (error) {
       
     }
