@@ -43,6 +43,7 @@ const Signup = () => {
       confirmPassword: "",
     },
   });
+  const {formState: {errors}} = form;
 
   async function onSubmit(data: { username: string; email: string; password: string; confirmPassword: string }) {
     const {username, email, password} = data;
@@ -55,7 +56,6 @@ const Signup = () => {
         "Content-Type": "application/json"
          },    
       });
-      const user = await res.json();
       if (res.ok) {
         await signIn("credentials", {
           email: email,
@@ -63,7 +63,10 @@ const Signup = () => {
           redirect: true,
           callbackUrl: "/",
         })
-      } 
+      } else {
+        const response = await res.json();
+        form.setError(response.field, {type: 'custom', message: response.message}, {shouldFocus:true})
+      }
     } catch (error) {
       
     }
@@ -93,7 +96,7 @@ const Signup = () => {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage >{errors.username?.message}</FormMessage>
                   </FormItem>
                 )}
               />
@@ -111,7 +114,7 @@ const Signup = () => {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage >{errors.email?.message}</FormMessage>
                   </FormItem>
                 )}
               />
