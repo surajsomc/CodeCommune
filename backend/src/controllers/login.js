@@ -1,5 +1,4 @@
 import User from "../models/userModel.js";
-import getStudents from "../services/students.js";
 import jwt from 'jsonwebtoken'
 import bycrypt from 'bcryptjs'
 const loginController = async (req, res, next) => {
